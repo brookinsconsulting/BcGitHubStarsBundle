@@ -1,0 +1,32 @@
+parameters:
+# BcGitHubStars Option Settings
+    options:
+        # hourly invoice debug output only displayed when display_debug: true
+        display_debug: true
+        # display_debug_level settings supports use values between 0 and 3. Note: Only use 3 under extreme need as it too verbose and is mostly not needed.
+        display_debug_level: 0
+        # default_handler: brookinsconsulting.hourly_invoice.document_invoice_type_pdf
+        default_handler: false
+        default_template: false
+# BcGitHubStars Values Settings
+    values:
+        percentage: %
+        dollar_sign: $
+        random_range_start: 100000000
+        random_range_end: 99999999999999999
+# BcGitHubStars Application Handler Settings
+    handlers:
+        pdf:
+            name: Adobe PDF Document
+            extension: [ pdf, ps ]
+            viewer_name: Adobe PDF Reader
+            viewer_url: https://get.adobe.com/reader/
+            # class: %brookinsconsulting.hourly_invoice.document_invoice_type_pdf.class%
+            class: false
+        txt:
+            name: Plain Text Document
+            extension: [ txt ]
+            viewer_name: MS Notepad
+            viewer_url: http://www.microsoft.com
+            # class: %brookinsconsulting.hourly_invoice.document_invoice_type_txt.class%
+            class: false

@@ -1,0 +1,62 @@
+{
+    "name": "brookinsconsulting/bcgithubstarsbundle",
+    "description": "BC GitHub Stars Bundle for Symfony 3. Provides a basic solution to import and display GitHub repository data with the most stars. Great for developers seeking to play with GithHub ReST API.",
+    "type" : "library",
+    "keywords" : [ "Symfony", "Doctrine", "bundle", "GitHub", "ReST", "Import", "Update" ],
+    "homepage": "https://gitlab.com/brookinsconsulting/bcgithubstarsbundle",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name" : "Brookins Consulting",
+            "email": "info@brookinsconsulting.com",
+            "role": "Author"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/brookinsconsulting/github-api-bundle"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "1.11.1",
+                "dist": {
+                    "url": "https://code.jquery.com/jquery-1.11.1.js",
+                    "type": "file"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "symfony/symfony": "3.2.*",
+        "doctrine/orm": "*",
+        "knplabs/github-api": "@dev",
+        "php-http/guzzle6-adapter": "@dev",
+        "brookinsconsulting/github-api-bundle": "dev-master",
+        "jms/di-extra-bundle": "^1.8",
+        "brookinsconsulting/bcknockoutjsbundle": "dev-master",
+        "symfony/assetic-bundle": "^2.8",
+        "braincrafted/bootstrap-bundle": "~2.0",
+        "twbs/bootstrap": "3.0.*",
+        "jquery/jquery":  "1.11.*",
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "knplabs/knp-menu-bundle": "^2.0"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "BrookinsConsulting\\BcGitHubStarsBundle" : ""
+        }
+    },
+    "extra": {
+        "symfony-assets-install": "relative",
+    },
+    "post-install-cmd": [
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+        "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache"
+    ],
+    "target-dir" : "BrookinsConsulting/BcGitHubStarsBundle"
+}

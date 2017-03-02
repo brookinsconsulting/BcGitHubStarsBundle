@@ -1,0 +1,67 @@
+/* Default content styles */
+div#content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+div#content table {
+
+    width: 100%;
+}
+div.details {
+    margin-top: 1px;
+}
+div.count {
+    padding-bottom: 10px;
+}
+/* navigation and pagination styles */
+div.navigation_top ul.pagination {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+div.navLink {
+    margin-top: 10px;
+}
+/* KnockoutJs Repository Input Form Styles */
+div#content table#repositories input.form-control.id {
+    width: 70px;
+    display: inline;
+}
+div#content table#repositories input.form-control.stars {
+    width: 70px;
+    display: inline;
+}
+div#content table#repositories input.form-control.name {
+    width: 170px;
+    display: inline;
+}
+div#content table#repositories input.form-control.full_name {
+    width: 370px;
+    display: inline;
+}
+div#content table#repositories input.form-control.created_date {
+    width: 170px;
+    display: inline;
+}
+div#content table#repositories input.form-control.last_push_date {
+    width: 170px;
+    display: inline;
+}
+div#content table#repositories input.form-control.url {
+    width: 370px;
+    display: inline;
+}
+div#content span#add_repository {
+    position: relative;
+    float: right;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left: -1px;
+}
+
+
+
+
+/* fin */

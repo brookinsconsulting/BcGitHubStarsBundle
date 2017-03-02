@@ -1,0 +1,42 @@
+BrookinsConsulting\BcGitHubStarsBundle\Entity\GitHubRepository:
+    type: entity
+    table: github_repository
+    repositoryClass: BrookinsConsulting\BcGitHubStarsBundle\Repository\GitHubRepositoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        repositoryID:
+            type: integer
+            unique: true
+        name:
+            type: string
+            length: '1000'
+        url:
+            type: string
+            length: '2000'
+        description:
+            type: text
+            notnull: false
+            notblank: false
+            nullable: true
+        stargazersCount:
+            type: integer
+            notnull: false
+            notblank: false
+            nullable: true
+            column: stargazers_count
+        createdDate:
+            type: datetime
+            column: created_date
+        lastPushDate:
+            type: datetime
+            column: last_push_date
+        fullName:
+            type: string
+            length: '2000'
+            column: full_name
+    lifecycleCallbacks: {  }

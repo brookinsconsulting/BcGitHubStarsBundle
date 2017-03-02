@@ -1,0 +1,44 @@
+services:
+    brookinsconsulting.github_stars.github_stars:
+        class: "%brookinsconsulting.github_stars.github_stars.class%"
+        scope: container
+        arguments:
+            - "@service_container"
+            - [ "%brookinsconsulting.github_stars.config%" ]
+        tags:
+            -  { name: brookinsconsulting.github_stars.github_stars }
+    brookinsconsulting.github_stars.github_stars_command:
+        class: "%brookinsconsulting.github_stars.github_stars_command.class%"
+        scope: container
+        arguments:
+            - "@service_container"
+            - [ "%brookinsconsulting.github_stars.config%" ]
+        tags:
+            -  { name: brookinsconsulting.github_stars.github_stars_command.console.command }
+    brookinsconsulting.github_stars.github_repository_model:
+        class: "%brookinsconsulting.github_stars.github_repository_model.class%"
+        scope: container
+        arguments:
+            - "@service_container"
+            - [ "%brookinsconsulting.github_stars.config%" ]
+        tags:
+            -  { name: brookinsconsulting.github_stars.github_repository_model }
+    brookinsconsulting.github_stars.github_stars_controller:
+        class: "%brookinsconsulting.github_stars.github_stars_controller.class%"
+        scope: container
+        arguments:
+            - "@request_stack"
+            - "@service_container"
+            - [ "%brookinsconsulting.github_stars.config%" ]
+        tags:
+            -  { name: brookinsconsulting.github_stars.github_stars_controller }
+    brookinsconsulting.github_stars.custom_routing_loader:
+        class: "%brookinsconsulting.github_stars.custom_routing_loader.class%"
+        tags:
+            - { name: routing.loader }
+parameters:
+     brookinsconsulting.github_stars.github_stars.class: BrookinsConsulting\BcGitHubStarsBundle\Services\GitHubStars
+     brookinsconsulting.github_stars.github_stars_command.class: BrookinsConsulting\BcGitHubStarsBundle\Command\GitHubStarsComand
+     brookinsconsulting.github_stars.github_repository_model.class: BrookinsConsulting\BcGitHubStarsBundle\Model\GitHubRepositoryModel
+     brookinsconsulting.github_stars.github_stars_controller.class: BrookinsConsulting\BcGitHubStarsBundle\Controller\GitHubStarsController
+     brookinsconsulting.github_stars.custom_routing_loader.class: BrookinsConsulting\BcGitHubStarsBundle\Routing\RouteLoader

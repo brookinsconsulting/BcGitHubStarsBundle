@@ -1,0 +1,18 @@
+{% extends 'BcGitHubStarsBundle:default:layout.html.twig' %}
+{% block body %}
+    <h1>Repository: {{repository.fullName}}</h1>
+    {% if repository %}
+        <div id="repositoryDetails">
+            <div class="details"><strong>Name: </strong>{{repository.name}}</div>
+            <div class="details"><strong>Full name: </strong>{{repository.fullName}}</div>
+            <div class="details"><strong>Stars: </strong>{{repository.stargazersCount}}</div>
+            <div class="details"><strong>RepositoryID: </strong>{{repository.repositoryID}}</div>
+            <div class="details"><strong>Url: </strong><a href="https://github.com/{{repository.fullName}}">https://github.com/{{repository.fullName}}</a></div>
+            <div class="details"><strong>Created Date: </strong>{{repository.createdDate|date("d/m/Y H:i:s")}}</div>
+            <div class="details"><strong>Last Pushed Date: </strong>{{repository.lastPushedDate|date("d/m/Y H:i:s")}}</div>
+        </div>
+    {% else %}
+        <div class="details"><strong>Repository Not Found!</strong></div>
+    {% endif %}
+    <div class="navLink"><a href="/repository/list" title="Back to repository list">Back</a> to repository list</div>
+{% endblock %}

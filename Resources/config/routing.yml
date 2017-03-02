@@ -1,0 +1,18 @@
+repositoryListStore:
+    path:      /repository/list/store
+    defaults:  { _controller: BcGitHubStarsBundle:GitHubStars:repositoryListStore }
+repositoryList:
+    path:      /repository/list
+    defaults:  { _controller: BcGitHubStarsBundle:GitHubStars:repositoryList }
+repositoryListWithParams:
+    path:      /repository/list/{limit}/{offset}
+    defaults:  { _controller: BcGitHubStarsBundle:GitHubStars:repositoryList, limit: 20, offset: 0 }
+repository:
+    path:      /repository/{id}
+    defaults:  { _controller: BcGitHubStarsBundle:GitHubStars:repository, id: 1 }
+bcgithubstarsIndex:
+    path:      /
+    defaults:  { _controller: BcGitHubStarsBundle:GitHubStars:about }
+about:
+    path:      /bcgithubstars/about
+    defaults:  { _controller: BcGitHubStarsBundle:GitHubStars:about }

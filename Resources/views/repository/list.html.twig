@@ -1,0 +1,167 @@
+{% extends 'BcGitHubStarsBundle:default:layout.html.twig' %}
+{% block body %}
+    <h1>Repositories</h1>
+
+    {# total items count #}
+    <div class="count">
+        Total Repositories: {{ badge( pagination.getTotalItemCount ) }}
+    </div>
+    {# display navigation #}
+    {% if pagination %}
+    <div class="navigation_top">
+        {{ knp_pagination_render(pagination) }}
+        {#<span id="add_repository"><a href="javascript:void(0)" data-bind="click: addRepository">Add Repository</a></span>#}
+    </div>
+    {% endif %}
+    <table id="repositories">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'r.id') }}</th>
+            <th{% if pagination.isSorted('r.stargazersCount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Stars', 'r.stargazersCount') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Name', 'r.name') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Full Name', 'r.fullName') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Created', 'r.createdDate') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Last Push', 'r.lastPushDate') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Url', 'r.createdDate') }}</th>
+            {# <th>Action</th>#}
+        </tr>
+        {# <tr>
+             <td colspan="7">
+                 <!-- <a href="#" data-bind="click: addRepository">Add</a> : <input type="text" data-bind="value: text, hasfocus: isFocused" /> -->
+             </td>
+         </tr>
+         <tbody data-bind='foreach: repositories, visible: repositories().length > 0'>
+             <tr>
+                 <td>
+                     <b data-bind="visible: !id().editing(), text: id().text, click: function () { edit(id()); }">&nbsp;</b>
+                     <input type="text" class="form-control id" data-bind="visible: id().editing(), value: id().text, hasFocus: id().editing" /></td>
+                 <td>
+                     <b data-bind="visible: !stars().editing(), text: stars().text, click: function () { edit(stars()); }">&nbsp;</b>
+                     <input type="text" class="form-control stars" data-bind="visible: stars().editing(), value: stars().text, hasFocus: stars().editing" />
+                 </td>
+                 <td>
+                     <b data-bind="visible: !name().editing(), text: name().text, click: function () { edit(name()); }">&nbsp;</b>
+                     <input type="text" class="form-control name" data-bind="visible: name().editing(), value: name().text, hasFocus: name().editing" />
+                 </td>
+                 <td>
+                     <b data-bind="visible: !full_name().editing(), text: full_name().text, click: function () { edit(full_name()); }">&nbsp;</b>
+                     <input type="text" class="form-control full_name" data-bind="visible: full_name().editing(), value: full_name().text, hasFocus: full_name().editing" />
+                 </td>
+                 <td>
+                     <b data-bind="visible: !created_date().editing(), text: created_date().text, click: function() { edit(created_date()); }">&nbsp;</b>
+                     <input type="text" class="form-control created_date" data-bind="visible: created_date().editing(), value: created_date().text, hasFocus: created_date().editing" />
+                 </td>
+                 <td>
+                     <b data-bind="visible: !last_push_date().editing(), text: last_push_date().text, click: function() { edit(last_push_date()); }">&nbsp;</b>
+                     <input type="text" class="form-control last_push_date" data-bind="visible: last_push_date().editing(), value: last_push_date().text, hasFocus: last_push_date().editing" />
+                 </td>
+                 <td>
+                     <b data-bind="visible: !url().editing(), text: url().text, click: function() { edit(url()); }">&nbsp;</b>
+                     <input type="text" class="form-control url" data-bind="visible: url().editing(), value: url().text, hasFocus: url().editing" />
+                 </td>
+                 <td>
+                     <button data-bind="click: storeRepository">Store</button>
+                     <a href="#" data-bind="click: $parent.removeRepository">Remove</a>
+                 </td>
+             </tr>
+         </tbody>
+          #}
+         {# table body #}
+        {% for repository in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ repository.id }}</td>
+                <td>{{ repository.stargazersCount }}</td>
+                <td><a href="/repository/{{ repository.repositoryID }}">{{ repository.name }}<a/></td>
+                <td>{{ repository.fullName }}</td>
+                <td>{{ repository.createdDate | date('Y-m-d') }}, {{ repository.createdDate | date('H:i:s') }}</td>
+                <td>{{ repository.lastPushDate | date('Y-m-d') }}, {{ repository.lastPushDate | date('H:i:s') }}</td>
+                <td><a href="https://github.com/{{ repository.fullName }}">https://github.com/{{ repository.fullName }}</a></td>
+                {# <td>&nbsp;<!-- <a href="#" data-bind="click: save">Save</a><br /><a href="#" data-bind="click: removeRepository">Remove</a> --></td> #}
+            </tr>
+        {% endfor %}
+    </table>
+    {# display navigation #}
+    {% if pagination %}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% endif %}
+    {#
+    <script type="application/javascript">
+        (function() {
+            // Editable Text object:
+            function EditableText(text, editable) {
+                var self = this;
+                self.text = ko.observable(text);
+                self.editing = ko.observable(editable);
+            }
+            // Repositories object:
+            function BcGitHubStarsRepo(id, stars, name, full_name, created_date, last_push_date, url) {
+                var self = this;
+
+                self.id = ko.observable(new EditableText(id, false));
+                self.stars = ko.observable(new EditableText(stars, false));
+                self.name = ko.observable(new EditableText(name, false));
+                self.full_name = ko.observable(new EditableText(full_name, false));
+                self.created_date = ko.observable(new EditableText(created_date, false));
+                self.last_push_date = ko.observable(new EditableText(last_push_date, false));
+                self.url = ko.observable(new EditableText(url, false));
+
+                self.edit = function (model) {
+                    console.log(model);
+                    model.editing(true);
+                };
+            }
+            var default_values = [
+                new BcGitHubStarsRepo('99999', '99999', 'madeupreponame', 'brookinsconsulting/madeupreponame',
+                    '2012-04-14, 13:24:45', '2017-02-05, 05:44:07', 'https://github.com/brookinsconsulting/madeupreponame')
+            ];
+            // Main KO logic:
+            function RepositoriesViewModel() {
+                var self = this;
+                self.repositories = ko.observableArray([
+                    new BcGitHubStarsRepo('99999', '99999', 'madeupreponame', 'brookinsconsulting/madeupreponame',
+                        '2012-04-14, 13:24:45', '2017-02-05, 05:44:07', 'https://github.com/brookinsconsulting/madeupreponame')
+                ]);
+                self.removeRepository = function(repository) {
+                    self.repositories.destroy(repository)
+                };
+                storeRepository = function(repository) {
+                    alert(repository);
+                    console.debug(repository);
+                    $.ajax("/repository/list/store", {
+                        data: ko.toJSON({ repositories: repository }),
+                        type: "post", contentType: "application/json; charset=utf8",
+                        success: function(result) {
+                            alert(result)
+                        }
+                    });
+                };
+                self.addRepository = function() {
+                    self.repositories.push(
+                        new BcGitHubStarsRepo('99999', '99999', 'madeupreponame', 'brookinsconsulting/madeupreponame',
+                            '2012-04-14, 13:24:45', '2017-02-05, 05:44:07', 'https://github.com/brookinsconsulting/madeupreponame')
+                    );
+                    //self.id().editing(true);
+                }
+            }
+            ko.applyBindings(new RepositoriesViewModel());
+
+            /*
+             var vm = {
+             text: ko.observable(),
+             items: ko.observableArray([]),
+             isFocused: ko.observable()
+             }
+
+             vm.addItem = function() {
+             vm.items.push(vm.text());
+             vm.text(null);
+             vm.isFocused(true);
+             }
+
+             ko.applyBindings(vm);
+             */
+        }());
+    </script>#}
+{% endblock %}
