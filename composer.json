@@ -52,7 +52,7 @@
         }
     },
     "extra": {
-        "symfony-assets-install": "relative",
+        "symfony-assets-install": "relative"
     },
     "post-install-cmd": [
         "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
