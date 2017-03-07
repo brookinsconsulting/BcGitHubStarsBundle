@@ -5,7 +5,7 @@ Less commonly known current limitations of the BC GitHub Stars solution
 
 ## Commands
 
-* bc:gs:create
+* bc:gs:import
 
 Currently we only support one command to directly create / import / update records.
 

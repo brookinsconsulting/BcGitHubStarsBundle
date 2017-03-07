@@ -5,6 +5,8 @@ TODO
 * Function testing
 * Improved Doctrine storage support
 * Improved front end design 
+* Move API into separate bundle
+* Improved setup and usage documentation
 
 Implemented
 ====

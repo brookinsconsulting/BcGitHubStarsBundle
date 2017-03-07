@@ -204,6 +204,18 @@ For repeated usage of the same input you can run the script more quickly using s
 
     php -d memory_limit=-1 bin/console bc:gs:import -v --token=<github-token-string> --starsQuery=">500" --iterationStore --update
 
+#### starsQuery Shell Arguement Input Syntax / Format
+
+The starsQuery shell argument input format / syntax mirrors the github reset api syntax. Learn more about this syntax from the available github documentation: [https://help.github.com/articles/searching-repositories/#search-based-on-the-number-of-stars-a-repository-has](https://help.github.com/articles/searching-repositories/#search-based-on-the-number-of-stars-a-repository-has) and [https://help.github.com/articles/search-syntax/](https://help.github.com/articles/search-syntax/).
+
+#### iterationStore Shell Arguement
+
+This argument while optional greatly increases the speed in which records are populated into the database and is recommended for queries which larger result sets. This ensures if the command exits for any reason manual or otherwise at least some data is stored before it exits.
+
+#### update Shell Arguement
+
+This argement is optional and ensures that existing local database records are updated durring the process. This is helpful when running the command more than once and ensures that the repository meta data including the lastPushDate field is updated.
+
 
 Usage : Website UI
 =====
@@ -218,6 +230,16 @@ The solution is configured to work virtually by default once properly installed.
 * http://localhost/repository/1
 
 To use the available views simply use your web browser to navigate to them.
+
+
+Notice
+======
+
+The tools provided by this bundle are currently very similar to the tools provided by GitHub.com
+
+* https://github.com/trending/php
+
+* https://github.com/search?o=desc&q=language%3APHP+stars%3A%3E%3D50&s=stars&type=Repositories&utf8=%E2%9C%93
 
 
 Testing
